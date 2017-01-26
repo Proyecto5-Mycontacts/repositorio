@@ -31,7 +31,8 @@ CREATE TABLE `tbl_contacto` (
   `cont_nombre` varchar(20) NOT NULL,
   `cont_apellido` varchar(20) NOT NULL,
   `cont_email` varchar(30) NOT NULL,
-  `cont_telefono` int(9) NOT NULL,
+  `cont_telefono1` int(10) NOT NULL,
+  `cont_telefono2` int(10) NOT NULL,
   `cont_foto` varchar(50) NOT NULL,
   `cont_direccion1` varchar(50) NOT NULL,
   `cont_direccion2` varchar(50) NOT NULL,
@@ -44,9 +45,9 @@ CREATE TABLE `tbl_contacto` (
 -- Volcado de datos para la tabla `tbl_contacto`
 --
 
-INSERT INTO `tbl_contacto` (`cont_id`, `cont_nombre`, `cont_apellido`, `cont_email`, `cont_telefono`, `cont_foto`, `cont_direccion1`, `cont_direccion2`, `cont_cumpleaños`, `cont_notas`, `usu_id`) VALUES
-(1, 'marc', 'petit', 'mpetit92@gmail.com', 636388745, 'img/mpetit.png', 'plaça de les palmeres num. 2 ', 'av. mare de deu belvitge', '1992-09-16', 'Esto es una nota', 2),
-(2, 'Eric', 'Petit', 'eric@gmail.com', 67628655, 'img/epetit', 'plaça de les palmeres num. 2', 'av. mare de deu belvitge', '1994-02-18', 'hola!!!', 1);
+INSERT INTO `tbl_contacto` (`cont_id`, `cont_nombre`, `cont_apellido`, `cont_email`, `cont_telefono1`, `cont_telefono2`, `cont_foto`, `cont_direccion1`, `cont_direccion2`, `cont_cumpleaños`, `cont_notas`, `usu_id`) VALUES
+(1, 'marc', 'petit', 'mpetit92@gmail.com', 636388745, 936573788, 'img/mpetit.png', 'plaça de les palmeres num. 2 ', 'av. mare de deu belvitge', '1992-09-16', 'Esto es una nota', 2),
+(2, 'Eric', 'Petit', 'eric@gmail.com', 67628655, 936373888, 'img/epetit', 'plaça de les palmeres num. 2', 'av. mare de deu belvitge', '1994-02-18', 'hola!!!', 1);
 
 -- --------------------------------------------------------
 

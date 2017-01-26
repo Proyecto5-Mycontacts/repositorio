@@ -33,7 +33,7 @@
 		//echo $_SESSION['usu_foto'];
 
 		//redirigimos a la página principal
-		header("location: index.php");
+		header("location: main.php");
 	} else {
 		//como no se ha encontrado usuario y contraseña, mandamos a la página login.php un mensaje de error
 		$_SESSION['error']="Usuario o contraseña incorrectos";

@@ -36,25 +36,53 @@
   }
 ?>
 
-   <form class="contact_form" action="anadir_contacto.proc.php" id="contact_form" runat="server"> 
-   <div> 
-   <ul> 
-   <li> <h2>Añadir Contacto nuevo</h2> <span class="required_notification">* Datos requeridos</span> </li> 
-   <li> <label for="name">Nombre:</label> <input type="text" name="nombre" placeholder="Nombre contacto" required /> </li>
-   <li> <label for="surname">Apellido:</label> <input type="text" name="apellido" placeholder="Apellido contacto" required /> </li>
-    <li> <label for="telefono">Telefono1:</label> <input type="text" name="telefono1" placeholder="Num. Telefono" required /> </li>
-    <li> <label for="telefono">Telefono2:</label> <input type="text" name="telefono2" placeholder="Num. Telefono" required /> </li>
-    <li> <label for="email">Email:</label> <input type="email" name="email" placeholder="email@email.com" required /> <span class="form_hint">Formato correcto: "name@something.com"</span> </li> 
-    <li> <label for="direccion1">Dirección 1:</label> <input type="text" name="direccion1" placeholder="Primera Dirección ej: Casa" required /> </li>
-    <li> <label for="direccion2">Dirección 2:</label> <input type="text" name="direccion2" placeholder="Segunda Dirección ej: Trabajo" required /> </li>
-    <li><input type="date" name="cumpleaños" step="1" min="1900-01-01"  value="<?php echo date("Y-m-d");?>"><span class="form_hint"> Formato correcto: "aaaa/mm/dd"</span> </li> 
-  <li><input id="foto" name="foto" type="file" ></li>
-     <li> <label for="nota">Notas:</label> <textarea name="nota" cols="40" rows="6" required></textarea> </li> 
-     <li> <button class="submit" type="submit">Añadir contacto</button> </li>
-      </ul> 
-      </div> 
-      </form> 
+ 
 
+
+<?php
+   extract($_REQUEST);
+
+   echo "<h1> Hola ".$_SESSION['usu_nombre']." bienvenido! </h1>" ;
+
+   $sql = "SELECT  * FROM tbl_contacto, tbl_usuario WHERE tbl_contacto.usu_id = tbl_usuario.usu_id AND tbl_contacto.cont_id = ". $_REQUEST['cont_id'] ;
+   //echo $sql;
+   $contactos = mysqli_query($conexion, $sql); 
+
+   if(mysqli_num_rows($contactos)>0){
+      
+      while($contacto = mysqli_fetch_array($contactos)){
+        
+        echo "<form name='modificar_contacto' action='modificar_contacto.proc.php?cont_id=".$contacto['cont_id']."' id='contact_form' runat='server'> 
+              <div> 
+              <ul> 
+              <li> <h2>Modificar Contacto existente</h2> 
+              <div class = 'foto_contacto'> ";
+        $foto=$contacto['cont_foto'];
+        
+                        if (file_exists ($foto)){
+                           echo "<img src=".$foto." width='150' height='150'/></br>";
+                        } else {
+                            echo "<img src='img/0.png' width='150' height='150'/><br/><br/>";
+                        }
+        echo "</div>";
+        echo "<div class='info_contacto'>";
+        echo "Nombre : <input type='text' name='nombre' placeholder='Nombre contacto' value='".$contacto['cont_nombre']."'/></br>";
+        echo "Apellido : <input type='text' name='apellido' placeholder='Apellido contacto' value='".$contacto['cont_apellido']."'></br>";
+        echo "Cumpleaños : <input type='date' name='cumpleaños' step='1' min='1900-01-01'  value='".$contacto['cont_cumpleaños']."'/></br>";
+        echo "Email : <input type='email' name='email' placeholder='email@email.com' value='".$contacto['cont_email']."'/></br>" ;
+        echo "1r Telefono : <input type='text' name='telefono1' placeholder='Num. Telefono' value='".$contacto['cont_telefono1']."'/></br>";
+        echo "1a Dirección : <input type='text' name='direccion1' placeholder='Primera Dirección ej: Casa' value='".$contacto['cont_direccion1']."'/></br>";
+        echo "2n Telefono : <input type='text' name='telefono2' placeholder='Num. Telefono' value='".$contacto['cont_telefono2']."'/></br>";
+        echo "2a Dirección : <input type='text' name='direccion2' placeholder='Segunda Dirección ej: Trabajo' value='".$contacto['cont_direccion2']."'/></br>";
+        echo "<input type='hidden' name='cont_id' value=".$contacto['cont_id']." />";
+        echo "<button class='submit' type='submit'>Modificar contacto</button>";
+        echo "</div>";
+
+      }
+} else{
+        echo "No tienes contactos, agrega a uno!";
+      }
+?>
 
 
    <?php }

@@ -5,9 +5,9 @@
 	include("conexion.proc.php");
 	 extract($_REQUEST);
 
-  $sql = "SELECT * FROM tbl_contacto WHERE cont_nombre='$_REQUEST[nombre]' AND usu_id = ". $_SESSION['usu_id'];	//ejecutamos la consulta
+ 	 $sql = "SELECT * FROM tbl_contacto WHERE cont_nombre='$_REQUEST[nombre]' AND usu_id = ". $_SESSION['usu_id'];	//ejecutamos la consulta
 	$resultado = mysqli_query($conexion,$sql);
-echo $sql;
+	echo $sql;
 	//si la consulta devuelve un registro se ha encontrado coincidencia de nombre de recurso
 	if(mysqli_num_rows($resultado)>0){
 		//si nos devuelve registros significa que ese recurso ya existe

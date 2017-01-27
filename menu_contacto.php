@@ -13,6 +13,14 @@
   <title>Mycontacts</title>
   <link rel="stylesheet" href="css/style.css">
   <script type="text/javascript" src="js/validacion.js"> </script>
+  <script type="text/javascript">
+  function Confirmar(cont_id){
+
+         if( confirm( "Estas seguro que deseas borrar este contacto?" ) ) {
+                  window.location = "eliminar_contacto.proc.php?cont_id="+ cont_id;
+          } 
+}
+  </script>
 </head>
 
 <body>
@@ -23,6 +31,7 @@
   <h1>LOGO - MyContacts</h1>
 
   <?php
+   extract($_REQUEST);
 
    echo "<h1> Hola ".$_SESSION['usu_nombre']." bienvenido! </h1>" ;
 
@@ -57,10 +66,14 @@
 
         echo"<div class='opciones_contacto'>";
         echo"<a href='modificar_contacto.php?cont_id=".$contacto['cont_id']."'><img src='img/modificar.png'/></a></br>";
-        echo"<a href='eliminar_contacto.php?cont_id=".$contacto['cont_id']."'><img src='img/eliminar.png'/></a></br>";
+        ?>
+
+        <a href='#' onclick='return Confirmar(<?php echo $contacto['cont_id']?>);'><img src='img/eliminar.png'/></a></br>
+        <?php
         echo"<a href='ubicacion_contacto.php?cont_id=".$contacto['cont_direccion1']."&".$contacto['cont_direccion2']."'><img src='img/googlemaps.ico'/></a></br>";
         echo"</div>";
 
+        
 
 
       }

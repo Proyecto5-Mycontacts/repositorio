@@ -26,7 +26,7 @@
 
    echo "<h1> Hola ".$_SESSION['usu_nombre']." bienvenido! </h1>" ;
 
-   $sql = "SELECT DISTINCT cont_foto, cont_nombre FROM tbl_contacto, tbl_usuario WHERE tbl_contacto.usu_id = ". $_SESSION['usu_id'] ;
+   $sql = "SELECT  cont_foto, cont_nombre, cont_id FROM tbl_contacto, tbl_usuario WHERE tbl_contacto.usu_id = tbl_usuario.usu_id AND tbl_contacto.usu_id = ". $_SESSION['usu_id'] ;
    //echo $sql;
    $contactos = mysqli_query($conexion, $sql); 
 
@@ -38,9 +38,9 @@
         $foto=$contacto['cont_foto'];
         
                         if (file_exists ($foto)){
-                           echo "<img src=".$foto." width='150' height='150'/></br>";
+                           echo "<a href='menu_contacto.php?cont_id=".$contacto['cont_id']."'> <img src=".$foto." width='150' height='150'/></a></br>";
                         } else {
-                            echo "<img src='img/0.png' width='150' height='150'/><br/><br/>";
+                            echo "<a href='menu_contacto.php?cont_id=".$contacto['cont_id']."'><img src='img/0.png' width='150' height='150'/></a><br/><br/>";
                         }
        
         echo "Nombre: " .$contacto['cont_nombre']."</br>";
@@ -48,12 +48,12 @@
       echo "</div>";
 
       }else{
-        echo "No tienes contactos, agrega a uno!";
+        echo "No tienes contactos, agrega a uno!  <a href='anadir_contacto.php'> <img src='img/agregar.png' width='50' height='50'/> </a>
+";
       }
   ?> 
-  <a href="anadir_contacto.php"> <img src="img/agregar.png" width='50' height='50'/> </a>
-
-
+ 
+   <a href='anadir_contacto.php'> <img src='img/agregar.png' width='50' height='50' title=' Añade más contactos '/> </a>
 
 
 

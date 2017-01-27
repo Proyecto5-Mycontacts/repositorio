@@ -45,6 +45,8 @@
         
         echo "<div class = 'foto_contacto'> ";
         $foto=$contacto['cont_foto'];
+
+
         
                         if (file_exists ($foto)){
                            echo "<img src=".$foto." width='150' height='150'/></br>";
@@ -59,6 +61,8 @@
         echo "Email : " .$contacto['cont_email']."</br>";
         echo "1r Telefono : " .$contacto['cont_telefono1']."</br>";
         echo "1a Dirección : " .$contacto['cont_direccion1']."</br>";
+        $direccion1 = $contacto['cont_direccion1'];
+        $direccion2 = $contacto['cont_direccion2']; 
         echo "2n Telefono : " .$contacto['cont_telefono2']."</br>";
         echo "2a Dirección : " .$contacto['cont_direccion2']."</br>";
 
@@ -70,12 +74,8 @@
 
         <a href='#' onclick='return Confirmar(<?php echo $contacto['cont_id']?>);'><img src='img/eliminar.png'/></a></br>
         <?php
-        echo"<a href='ubicacion_contacto.php?cont_id=".$contacto['cont_direccion1']."&".$contacto['cont_direccion2']."'><img src='img/googlemaps.ico'/></a></br>";
+        echo"<a href='' id='mostrar'> <img src='img/googlemaps.ico'/></a></br>";
         echo"</div>";
-
-        
-
-
       }
       
 
@@ -83,8 +83,43 @@
         echo "No tienes contactos, agrega a uno!";
       }
   ?> 
- 
 
+
+  <div id="map" style="display:none;"></div> 
+ <script>
+function initMap() {
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 8,
+    center: {lat: -34.397, lng: 150.644}
+  });
+  var geocoder = new google.maps.Geocoder();
+
+  document.getElementById('mostrar').addEventListener('click', function() {
+    geocodeAddress(geocoder, map);
+  });
+}
+
+function geocodeAddress(geocoder, resultsMap) {
+  var address = <?php echo $direccion1;  ?>
+  geocoder.geocode({'address': address}, function(results, status) {
+    if (status === google.maps.GeocoderStatus.OK) {
+      resultsMap.setCenter(results[0].geometry.location);
+      var marker = new google.maps.Marker({
+        map: resultsMap,
+        position: results[0].geometry.location
+      });
+
+      document.mostrar.style.display = 'block';
+
+    } else {
+      alert('Geocode was not successful for the following reason: ' + status);
+    }
+  });
+}
+
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBzJB0SpA6BAJfM8gtXucenP27gNDmdhjk&callback=initMap"
+        async defer></script>
 
 
 

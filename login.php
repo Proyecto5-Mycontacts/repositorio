@@ -106,7 +106,7 @@
             </div>
             <div class="col-md-3 text-center">
             <input type="text" class="form-control" id="nombre" name="nombre" placeholder="usuario" onfocus="document.Login.nombre.style.color='';"><br>
-                    <input type="text" class="form-control" name="password" placeholder="contraseña" onfocus="document.Login.password.style.color='';"/><br>
+                    <input type="password" class="form-control" name="password" placeholder="contraseña" onfocus="document.Login.password.style.color='';"/><br>
             </div>
             <div class="col-md-3 text-center">
               <button class="page-scroll btn btn-xl">Entrar</button><br>

@@ -281,7 +281,7 @@
   content: "\f022";
 }
 .fa-lock:before {
-  content: "\f023";
+  content: ;
 }
 .fa-flag:before {
   content: "\f024";
@@ -536,7 +536,7 @@
   content: "\f079";
 }
 .fa-shopping-cart:before {
-  content: "\f07a";
+  content: ;
 }
 .fa-folder:before {
   content: "\f07b";
@@ -921,7 +921,7 @@
   content: "\f108";
 }
 .fa-laptop:before {
-  content: "\f109";
+  content: ;
 }
 .fa-tablet:before {
   content: "\f10a";

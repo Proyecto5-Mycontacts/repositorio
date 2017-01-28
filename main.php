@@ -43,7 +43,7 @@
 
 <body id="page-top" class="index">
  <!-- Navigation -->
-    <nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top" style="background-color: #222222 ">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header page-scroll">
@@ -92,7 +92,7 @@
 
    
 
-   $sql = "SELECT  cont_foto, cont_nombre, cont_id FROM tbl_contacto, tbl_usuario WHERE tbl_contacto.usu_id = tbl_usuario.usu_id AND tbl_contacto.usu_id = ". $_SESSION['usu_id'] ;
+   $sql = "SELECT  cont_foto, cont_nombre, cont_id FROM tbl_contacto, tbl_usuario WHERE tbl_contacto.usu_id = tbl_usuario.usu_id AND tbl_contacto.usu_id = ". $_SESSION['usu_id']." ORDER BY cont_nombre";
    //echo $sql;
    $contactos = mysqli_query($conexion, $sql); 
 

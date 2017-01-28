@@ -7,24 +7,90 @@
 
 
 <!DOCTYPE html>
-<html >
+<html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <title>Mycontacts</title>
-  <link rel="stylesheet" href="css/style.css">
-  <script type="text/javascript" src="js/validacion.js"> </script>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>MyContacts</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="vendor/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Theme CSS -->
+    <link href="css/agency.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js" integrity="sha384-0s5Pv64cNZJieYFkXYOTId2HMA2Lfb6q2nAcx2n0RTLUnCAoTTsS0nKEO27XyKcY" crossorigin="anonymous"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js" integrity="sha384-ZoaMbDF+4LeFxg6WdScQ9nnR1QC2MIRxA1O9KWEXQwns1G8UNyIEZIQidzb0T1fo" crossorigin="anonymous"></script>
+    <![endif]-->
+<script type="text/javascript" src="js/validacion.js"> </script>
 </head>
 
-<body>
+<body id="page-top" class="index">
+ <!-- Navigation -->
+    <nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+                </button>
+                
+                <a class="navbar-brand page-scroll" href="#page-top"> <img src="img/logos/logo.png" width="125" height="45" alt="MyContacts"></a>
+
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li>
+                        <a href="login.php" >Login</a>
+                    </li>
+                    
+                </ul>
+                <?php
+                  if(isset($_SESSION['usu_nombre']) ){
+                    echo "<p class='navbar-brand'  align='right'>".$_SESSION['usu_nombre']."</p>" ;
+                ?>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+<!-- Header -->
+    <!--<header style="background-image: url(''); background-color: #222222 ">
+        <div class="container">
+              <div class="row">
+            <div class="intro-text">
+                <div class="col-lg-12 text-center">
+                
+        <div class="row"> -->
+       <section id="team" class="bg-darkest-gray">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
 
   <?php
-      if(isset($_SESSION['usu_nombre']) ){
-  ?>
-  <h1>LOGO - MyContacts</h1>
 
-  <?php
-
-   echo "<h1> Hola ".$_SESSION['usu_nombre']." bienvenido! </h1>" ;
+   
 
    $sql = "SELECT  cont_foto, cont_nombre, cont_id FROM tbl_contacto, tbl_usuario WHERE tbl_contacto.usu_id = tbl_usuario.usu_id AND tbl_contacto.usu_id = ". $_SESSION['usu_id'] ;
    //echo $sql;
@@ -34,26 +100,26 @@
       
       while($contacto = mysqli_fetch_array($contactos)){
         
-        echo "<div class = 'foto_contacto'> ";
+        
         $foto=$contacto['cont_foto'];
         
                         if (file_exists ($foto)){
-                           echo "<a href='menu_contacto.php?cont_id=".$contacto['cont_id']."'> <img src=".$foto." width='150' height='150'/></a></br>";
+                           echo "<div class='col-sm-4'> <div class='team-member'> <a href='menu_contacto.php?cont_id=".$contacto['cont_id']."'> <img src=".$foto." width='150' height='150' class='img-responsive img-circle' alt=".$foto." style='background-color: white' /></a>";
                         } else {
-                            echo "<a href='menu_contacto.php?cont_id=".$contacto['cont_id']."'><img src='img/0.png' width='150' height='150'/></a><br/><br/>";
+                            echo "<div class='col-sm-4'> <div class='team-member'><a href='menu_contacto.php?cont_id=".$contacto['cont_id']."'><img src='img/0.png' width='150' height='150' class='img-responsive img-circle' alt='Imagen no encontrada' style='background-color: white' /></a>";
                         }
        
-        echo "Nombre: " .$contacto['cont_nombre']."</br>";
+        echo "<h4  style='   color: #ffffff'>Nombre: " .$contacto['cont_nombre']."</h4></br></div></div>";
       }
-      echo "</div>";
+   
 
       }else{
-        echo "No tienes contactos, agrega a uno!  <a href='anadir_contacto.php'> <img src='img/agregar.png' width='50' height='50'/> </a>
-";
+        echo "No tienes contactos, agrega a uno!";
       }
   ?> 
  
-   <a href='anadir_contacto.php'> <img src='img/agregar.png' width='50' height='50' title=' Añade más contactos '/> </a>
+   <div class='col-sm-4'> <div class='team-member'><a href='anadir_contacto.php'> <img src='img/agregar.png' width='150' height='150' title=' Añade más contactos ' class='img-responsive img-circle'/> </a>
+   <h4  style='   color: #ffffff'>Añadir Contacto</h4></br></div></div></div></div></div></section>
 
 
 
@@ -68,4 +134,32 @@
       ?>
 </body>
 </html>
+<footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <span class="copyright">Copyright &copy; Eric y Marc Petit 2017</span>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline social-buttons">
+                        <li><a href="#"><i class="fa fa-twitter"></i></a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-facebook"></i></a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-linkedin"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline quicklinks">
+                        <li><a href="#">Contacto</a>
+                        </li>
+                        <li><a href="#">Terms of Use</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+ </html>
 

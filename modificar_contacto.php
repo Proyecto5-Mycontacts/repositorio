@@ -123,9 +123,9 @@
         echo "<form name='modificar_contacto' action='modificar_contacto.proc.php?cont_id=".$contacto['cont_id']."' id='contact_form' runat='server'>";
            $foto='img/users/'.$contacto['cont_foto'];
         if (file_exists ($foto)){
-                           echo "<div class='col-xs-1'></div><div class='col-sm-2 text-center'> <a href='menu_contacto.php?cont_id=".$contacto['cont_id']."'> <img src=".$foto." width='170' height='170' class='img-responsive img-circle' alt=".$foto." style='background-color: white' align='center' /></a></div>";
+                           echo "<div class='col-xs-1'></div><div class='col-sm-2 text-center'> <a href='menu_contacto.php?cont_id=".$contacto['cont_id']."'> <img src=".$foto." width='150' height='150' class='img-responsive img-circle' alt=".$foto." style='background-color: white' align='center' /></a></div>";
                         } else {
-                            echo "<div class='col-xs-1'></div><div class='col-sm-2 text-center'><a href='menu_contacto.php?cont_id=".$contacto['cont_id']."'><img src='img/users/0.png' width='170' height='170' class='img-responsive img-circle' alt='Imagen no encontrada' style='background-color: white' align='center' /></a></div>";
+                            echo "<div class='col-xs-1'></div><div class='col-sm-2 text-center'><a href='menu_contacto.php?cont_id=".$contacto['cont_id']."'><img src='img/users/0.png' width='150' height='150' class='img-responsive img-circle' alt='Imagen no encontrada' style='background-color: white' align='center' /></a></div>";
                         }
 
         echo "<div class='col-sm-2 text-right'> ";

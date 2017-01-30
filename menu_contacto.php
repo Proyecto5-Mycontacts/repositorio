@@ -111,7 +111,7 @@
       while($contacto = mysqli_fetch_array($contactos)){
         
         
-        $foto=$contacto['cont_foto'];
+      $foto='img/users/'.$contacto['cont_foto'];
 
 
         
@@ -136,12 +136,12 @@
         echo "</div>";
 
         echo"<div class='col-xs-1'></div> <div class='col-xs-1' text-left'>";
-        echo"<a href='modificar_contacto.php?cont_id=".$contacto['cont_id']."'><img src='img/modificar.png' width='30' height='30'/></a></br></div>";
+        echo"<a href='modificar_contacto.php?cont_id=".$contacto['cont_id']."'><img src='img/icons/modificar.png' width='30' height='30'/></a></br></div>";
         ?>
 
-        <div class='col-xs-1' text-right'><a href='#' onclick='return Confirmar(<?php echo $contacto['cont_id']?>);'><img src='img/eliminar.png' width='30' height='30'/></a></br></div>
+        <div class='col-xs-1' text-right'><a href='#' onclick='return Confirmar(<?php echo $contacto['cont_id']?>);'><img src='img/icons/eliminar.png' width='30' height='30'/></a></br></div>
         <?php
-        echo"<div class='col-xs-1' text-left'><a href='' id='mostrar'> <img src='img/googlemaps.ico' width='30' height='30' /></a></br></div>";
+        echo"<div class='col-xs-1' text-left'><a href='' id='mostrar'> <img src='img/icons/googlemaps.ico' width='30' height='30' /></a></br></div>";
         echo"</div>";
       }
       

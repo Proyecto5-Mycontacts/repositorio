@@ -110,12 +110,12 @@
       while($contacto = mysqli_fetch_array($contactos)){
         
         
-        $foto=$contacto['cont_foto'];
+        $foto='img/users/'.$contacto['cont_foto'];
         
                         if (file_exists ($foto)){
                            echo "<div class='col-sm-4'> <div class='team-member'> <a href='menu_contacto.php?cont_id=".$contacto['cont_id']."'> <img src=".$foto." width='150' height='150' class='img-responsive img-circle' alt=".$foto." style='background-color: white' /></a>";
                         } else {
-                            echo "<div class='col-sm-4'> <div class='team-member'><a href='menu_contacto.php?cont_id=".$contacto['cont_id']."'><img src='img/0.png' width='150' height='150' class='img-responsive img-circle' alt='Imagen no encontrada' style='background-color: white' /></a>";
+                            echo "<div class='col-sm-4'> <div class='team-member'><a href='menu_contacto.php?cont_id=".$contacto['cont_id']."'><img src='img/users/0.png' width='150' height='150' class='img-responsive img-circle' alt='Imagen no encontrada' style='background-color: white' /></a>";
                         }
        
         echo "<h4  style='   color: #ffffff'>Nombre: " .$contacto['cont_nombre']."</h4></br></div></div>";
@@ -123,11 +123,11 @@
    
 
       }else{
-        echo "No tienes contactos, agrega a uno!";
+        echo "<h4  style='   color: #ffffff'>No tienes contactos, agrega a uno!</h4>";
       }
   ?> 
  
-   <div class='col-sm-4'> <div class='team-member'><a href='anadir_contacto.php'> <img src='img/agregar.png' width='150' height='150' title=' Añade más contactos ' class='img-responsive img-circle'/> </a>
+   <div class='col-sm-4'> <div class='team-member'><a href='anadir_contacto.php'> <img src='img/users/agregar.png' width='150' height='150' title=' Añade más contactos ' class='img-responsive img-circle'/> </a>
    <h4  style='   color: #ffffff'>Añadir Contacto</h4></br></div></div></div></div></div></section>
 
 

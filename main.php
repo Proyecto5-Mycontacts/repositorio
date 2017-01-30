@@ -38,6 +38,15 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js" integrity="sha384-0s5Pv64cNZJieYFkXYOTId2HMA2Lfb6q2nAcx2n0RTLUnCAoTTsS0nKEO27XyKcY" crossorigin="anonymous"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js" integrity="sha384-ZoaMbDF+4LeFxg6WdScQ9nnR1QC2MIRxA1O9KWEXQwns1G8UNyIEZIQidzb0T1fo" crossorigin="anonymous"></script>
     <![endif]-->
+      <!-- jQuery -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js" integrity="sha384-mE6eXfrb8jxl0rzJDBRanYqgBxtJ6Unn4/1F7q4xRRyIw7Vdg9jP4ycT7x1iVsgb" crossorigin="anonymous"></script>
+   <script src="js/agency.min.js"></script>
 <script type="text/javascript" src="js/validacion.js"> </script>
 </head>
 
@@ -52,7 +61,10 @@
                 </button>
                 
                 <a class="navbar-brand page-scroll" href="#page-top"> <img src="img/logos/logo.png" width="125" height="45" alt="MyContacts"></a>
-
+                <?php
+                  if(isset($_SESSION['usu_nombre']) ){
+                    echo "<p class='navbar-brand'  align='right'>".$_SESSION['usu_nombre']."</p>" ;
+                ?>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -66,10 +78,7 @@
                     </li>
                     
                 </ul>
-                <?php
-                  if(isset($_SESSION['usu_nombre']) ){
-                    echo "<p class='navbar-brand'  align='right'>".$_SESSION['usu_nombre']."</p>" ;
-                ?>
+               
             </div>
             <!-- /.navbar-collapse -->
         </div>

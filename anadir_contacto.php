@@ -5,59 +5,150 @@
   include("conexion.proc.php");
 ?>
 
-
 <!DOCTYPE html>
-<html >
+<html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <title>Mycontacts</title>
-  <link rel="stylesheet" href="css/style.css">
-  <script type="text/javascript" src="js/validacion.js"> </script>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>MyContacts</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="vendor/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Theme CSS -->
+    <link href="css/agency.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js" integrity="sha384-0s5Pv64cNZJieYFkXYOTId2HMA2Lfb6q2nAcx2n0RTLUnCAoTTsS0nKEO27XyKcY" crossorigin="anonymous"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js" integrity="sha384-ZoaMbDF+4LeFxg6WdScQ9nnR1QC2MIRxA1O9KWEXQwns1G8UNyIEZIQidzb0T1fo" crossorigin="anonymous"></script>
+    <![endif]-->
+ <script src="vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js" integrity="sha384-mE6eXfrb8jxl0rzJDBRanYqgBxtJ6Unn4/1F7q4xRRyIw7Vdg9jP4ycT7x1iVsgb" crossorigin="anonymous"></script>
+   <script src="js/agency.min.js"></script>   
+<script type="text/javascript" src="js/validacion.js"> </script>
+<script type="text/javascript">
+  function Confirmar(cont_id){
+
+         if( confirm( "Estas seguro que deseas borrar este contacto?" ) ) {
+                  window.location = "eliminar_contacto.proc.php?cont_id="+ cont_id;
+          } 
+}
+  </script>
 </head>
 
-<body>
+<body id="page-top" class="index">
 
-  <?php
-      if(isset($_SESSION['usu_nombre']) ){
-  ?>
-  <h1>LOGO - MyContacts</h1>
+    <!-- Navigation -->
+    <nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top " style="background-color: #222222 ">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand page-scroll" href="#page-top"> <img src="img/logos/logo.png" width="150" height="50" alt="MyContacts"></a>
+                <?php
+                  if(isset($_SESSION['usu_nombre']) ){
+                    echo "<a href='main.php' class='navbar-brand'  align='right'>".$_SESSION['usu_nombre'].", Bienvenido!</a>";
+                ?>
+            </div>
 
-  <?php
-
-   echo "<h1> Hola ".$_SESSION['usu_nombre']." bienvenido! </h1>" ;
-
-  
-  ?> 
-  
-
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li>
+                        <a href="login.php" >Login</a>
+                    </li>
+                    <li>
+                        <a href="login.php" >Login</a>
+                    </li>
+                    
+                </ul>
+              
+            </div>
+            <!-- /.navbar-collapse --> 
+        </div>
+        <!-- /.container-fluid -->
+     </nav>
+ <section id="team" class="bg-darkest-gray">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-left"> 
+<div class='col-lg-4 text-right'>
  <?php
   if(isset($_SESSION['error_contacto'])){
     echo"<label>".$_SESSION['error_contacto']."</label>";
   }
 ?>
 
-   <form class="contact_form" action="anadir_contacto.proc.php" id="contact_form" runat="server"> 
-   <div> 
-   <ul> 
-   <li> <h2>Añadir Contacto nuevo</h2> <span class="required_notification">* Datos requeridos</span> </li> 
-   <li> <label for="name">Nombre:</label> <input type="text" name="nombre" placeholder="Nombre contacto" required /> </li>
-   <li> <label for="surname">Apellido:</label> <input type="text" name="apellido" placeholder="Apellido contacto" required /> </li>
-    <li> <label for="telefono">Telefono1:</label> <input type="text" name="telefono1" placeholder="Num. Telefono" required /> </li>
-    <li> <label for="telefono">Telefono2:</label> <input type="text" name="telefono2" placeholder="Num. Telefono" required /> </li>
-    <li> <label for="email">Email:</label> <input type="email" name="email" placeholder="email@email.com" required /> <span class="form_hint">Formato correcto: "name@something.com"</span> </li> 
-    <li> <label for="direccion1">Dirección 1:</label> <input type="text" name="direccion1" placeholder="Primera Dirección ej: Casa" required /> </li>
-    <li> <label for="direccion2">Dirección 2:</label> <input type="text" name="direccion2" placeholder="Segunda Dirección ej: Trabajo" required /> </li>
-    <li><input type="date" name="cumpleaños" step="1" min="1900-01-01"  value="<?php echo date("Y-m-d");?>"><span class="form_hint"> Formato correcto: "aaaa/mm/dd"</span> </li> 
-  <li><input id="foto" name="foto" type="file" ></li>
-     <li> <label for="nota">Notas:</label> <textarea name="nota" cols="40" rows="6" required></textarea> </li> 
-     <li> <button class="submit" type="submit">Añadir contacto</button> </li>
-      </ul> 
-      </div> 
-      </form> 
+   <form action="anadir_contacto.proc.php" id="contact_form" runat="server"> 
+   
+   
+  
+    <h7 class='control'> Nombre: </h7><br>
+    <h7 class='control' > Apellido:</h7><br>
+    <h7 class='control' > Telefono 1: </h7><br>
+    <h7 class='control' > Telefono 2:</h7><br>
+    <h7 class='control' > E-mail</h7> <br>
+    <h7 class='control' > Dirección 1</h7><br>
+    <h7 class='control' > Dirección 2</h7><br>
+    <h7 class='control' >Cumpleaños:</h7> <br>
+  <h7 class='control' >Foto:</h7><br>
+    
+ </h6></div>
+      
+      
+      <div class='col-lg-4 text-left'>
+       <input class='form-control' type="text" name="nombre" placeholder="Nombre contacto" required /><br>
+       <input class='form-control' type="text" name="apelh6do" placeholder="Apellido contacto" required /> <br>
+       <input class='form-control' type="text" name="telefono1" placeholder="Num. Telefono" required /> <br>
+       <input class='form-control' type="text" name="telefono2" placeholder="Num. Telefono" required /> <br>
+       <input class='form-control' type="email" name="email" placeholder="email@email.com" required /> <br>
+       <input class='form-control' type="text" name="direccion1" placeholder="Primera Dirección ej: Casa" required /><br>
+       <input class='form-control' type="text" name="direccion2" placeholder="Segunda Dirección ej: Trabajo" required /><br>
+       <input class='form-control' type="date" name="cumpleaños" step="1" min="1900-01-01"  value="<?php echo date("Y-m-d");?>"><br>
+       <input class='form-control' id="foto" name="foto" type="file" >
+     
+      </div>
+      <div class='col-lg-4 text-left'>
+      <h7 class='control'></h7><br>
+      <h7 class='control'></h7><br>
+      <h7 class='control'></h7><br>
+      <h7 class='control'></h7><br>
 
+        <span class='control'>Formato correcto: "name@something.com"</span><br>
+      <h7 class='control'></h7><br>
+      <h7 class='control'></h7><br>
 
+        <span class='control'> Formato correcto: "aaaa/mm/dd"</span>
+      <div>
+          <button type='submit' class='page-scroll btn btn-xl'>Añadir contacto</button> 
+      </form></div></div></div></div></section> 
 
-   <?php }
+<?php }
      else {
         //como han intentado acceder de manera incorrecta, redirigimos a la página login.php con un mensaje de error
         $_SESSION['error']="PILLÍN! Tienes que loguearte primero!";
@@ -67,5 +158,33 @@
       //end if(isset($_SESSION['mail'])){
       ?>
 </body>
-</html>
+
+<footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <span class="copyright">Copyright &copy; Eric y Marc Petit 2017</span>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline social-buttons">
+                        <li><a href="#"><i class="fa fa-twitter"></i></a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-facebook"></i></a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-linkedin"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline quicklinks">
+                        <li><a href="#">Contacto</a>
+                        </li>
+                        <li><a href="#">Terms of Use</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+ </html>
 

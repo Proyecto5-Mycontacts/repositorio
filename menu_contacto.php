@@ -116,13 +116,13 @@
 
         
                         if (file_exists ($foto)){
-                           echo "<div class='col-xs-1'></div><div class='col-sm-4 text-center'> <a href='menu_contacto.php?cont_id=".$contacto['cont_id']."'> <img src=".$foto." width='170' height='170' class='img-responsive img-circle' alt=".$foto." style='background-color: white' align='center' /></a></div>";
+                           echo "<div class='col-xs-1'></div><div class='col-sm-4 text-center'> <a href='menu_contacto.php?cont_id=".$contacto['cont_id']."'> <img src=".$foto." width='150' height='150' class='img-responsive img-circle' alt=".$foto." style='background-color: white' align='center' /></a></div>";
                         } else {
-                            echo "<div class='col-xs-1'></div><div class='col-sm-4 text-center'><a href='menu_contacto.php?cont_id=".$contacto['cont_id']."'><img src='img/0.png' width='170' height='170' class='img-responsive img-circle' alt='Imagen no encontrada' style='background-color: white' align='center' /></a></div>";
+                            echo "<div class='col-xs-1'></div><div class='col-sm-4 text-center'><a href='menu_contacto.php?cont_id=".$contacto['cont_id']."'><img src='img/users/0.png' width='150' height='150' class='img-responsive img-circle' alt='Imagen no encontrada' style='background-color: white' align='center' /></a></div>";
                         }
 
         echo "<div class='col-sm-7' text-left'>";
-        echo "<h6 style='color: #ffffff' >Nombre : " .$contacto['cont_nombre']."</br></br>";
+        echo "<h7 class='control'>Nombre : " .$contacto['cont_nombre']."</br></br>";
         echo "Apellido : " .$contacto['cont_apellido']."</br></br>";
         echo "Cumpleaños : " .$contacto['cont_cumpleaños']."</br></br>";
         echo "Email : " .$contacto['cont_email']."</br></br>";
@@ -131,11 +131,11 @@
         $direccion1 = $contacto['cont_direccion1'];
         $direccion2 = $contacto['cont_direccion2']; 
         echo "2n Telefono : " .$contacto['cont_telefono2']."</br></br>";
-        echo "2a Dirección : " .$contacto['cont_direccion2']."</br></br></h6>";
+        echo "2a Dirección : " .$contacto['cont_direccion2']."</br></br></h7>";
 
-        echo "</div>";
+        echo "</div></div><div class='col-lg-12' text-left'> <br></div>";
 
-        echo"<div class='col-xs-1'></div> <div class='col-xs-1' text-left'>";
+        echo"<div class='col-md-1'></div> <div class='col-xs-1' text-left'>";
         echo"<a href='modificar_contacto.php?cont_id=".$contacto['cont_id']."'><img src='img/icons/modificar.png' width='30' height='30'/></a></br></div>";
         ?>
 

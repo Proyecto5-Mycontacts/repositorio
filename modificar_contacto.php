@@ -59,7 +59,7 @@
 <body id="page-top" class="index">
 
     <!-- Navigation -->
-    <nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top" style="background-color: #222222">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header page-scroll">
@@ -69,7 +69,7 @@
                 <a class="navbar-brand page-scroll" href="#page-top"> <img src="img/logos/logo.png" width="150" height="50" alt="MyContacts"></a>
                 <?php
                   if(isset($_SESSION['usu_nombre']) ){
-                    echo "<a href='main.php' class='navbar-brand'  align='right'>".$_SESSION['usu_nombre'].", Bienvenido!</a>";
+                    echo "<a href='main.php' class='navbar-brand'  align='right'>".$_SESSION['usu_nombre']."</a>";
                 ?>
             </div>
 
@@ -129,7 +129,7 @@
                         }
 
         echo "<div class='col-sm-2 text-right'> ";
-        echo "<h6 style='color: #ffffff'>Nombre :<br><br><br><h6 style='color: #ffffff'>Apellido :<br><br><br><h6 style='color: #ffffff'>Cumpleaños :<br><br><br><h6 style='color: #ffffff'> Email :<br><br><br> <h6 style='color: #ffffff'>1r Telefono :<br><br><br> <h6 style='color: #ffffff'>1a Dirección :<br><br><br><h6 style='color: #ffffff'>2n Telefono : <br><br><br><h6 style='color: #ffffff'>2a Dirección : </h6></div><div class='col-sm-2' text-left'>";
+        echo "<h7 class='control'>Nombre :</h7><br><h7 class='control'>Apellido :</h7><br><h7 class='control'>Cumpleaños :</h7><br><h7 class='control'>Email :</h7><br><h7 class='control'>1r Telefono :</h7><br><h7 class='control'>1a Dirección :</h7><br><h7 class='control'>2n Telefono : </h7><br><h7 class='control'>2a Dirección :</h7></div><div class='col-sm-2' text-left'>";
         echo "<input type='text' name='nombre' placeholder='Nombre contacto' value='".$contacto['cont_nombre']."' class='form-control'/></br>";
         echo "<input type='text' name='apellido' placeholder='Apellido contacto' value='".$contacto['cont_apellido']."' class='form-control'></br>";
         echo "<input type='date' name='cumpleaños' step='1' min='1900-01-01'  value='".$contacto['cont_cumpleaños']."' class='form-control'/></br>";
@@ -149,7 +149,7 @@
         echo "No tienes contactos, agrega a uno!";
       }
 ?>
-</div></div></div></section>
+</div></div></div></div></section>
 
    <?php }
      else {

@@ -68,6 +68,10 @@
                     <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                 </button>
                 <a class="navbar-brand page-scroll" href="#page-top"> <img src="img/logos/logo.png" width="150" height="50" alt="MyContacts"></a>
+                <?php
+                  if(isset($_SESSION['usu_nombre']) ){
+                    echo "<a href='main.php' class='navbar-brand'  align='right'>".$_SESSION['usu_nombre'].", Bienvenido!</a>";
+                ?>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -82,10 +86,7 @@
                     <li>
                         <a href="login.php" >Login</a>
                     </li>
-                    <?php
-                  if(isset($_SESSION['usu_nombre']) ){
-                    echo "<a href='main.php' class='navbar-brand'  align='right'>".$_SESSION['usu_nombre']."</a>" ;
-                ?>
+             
                 </ul>
               
             </div>
@@ -121,16 +122,16 @@
                         }
 
         echo "<div class='col-sm-7' text-left'>";
-        echo "<p style='color: #ffffff' >Nombre : " .$contacto['cont_nombre']."</br>";
-        echo "Apellido : " .$contacto['cont_apellido']."</br>";
-        echo "Cumpleaños : " .$contacto['cont_cumpleaños']."</br>";
-        echo "Email : " .$contacto['cont_email']."</br>";
-        echo "1r Telefono : " .$contacto['cont_telefono1']."</br>";
-        echo "1a Dirección : " .$contacto['cont_direccion1']."</br>";
+        echo "<h6 style='color: #ffffff' >Nombre : " .$contacto['cont_nombre']."</br></br>";
+        echo "Apellido : " .$contacto['cont_apellido']."</br></br>";
+        echo "Cumpleaños : " .$contacto['cont_cumpleaños']."</br></br>";
+        echo "Email : " .$contacto['cont_email']."</br></br>";
+        echo "1r Telefono : " .$contacto['cont_telefono1']."</br></br>";
+        echo "1a Dirección : " .$contacto['cont_direccion1']."</br></br>";
         $direccion1 = $contacto['cont_direccion1'];
         $direccion2 = $contacto['cont_direccion2']; 
-        echo "2n Telefono : " .$contacto['cont_telefono2']."</br>";
-        echo "2a Dirección : " .$contacto['cont_direccion2']."</br></p>";
+        echo "2n Telefono : " .$contacto['cont_telefono2']."</br></br>";
+        echo "2a Dirección : " .$contacto['cont_direccion2']."</br></br></h6>";
 
         echo "</div>";
 

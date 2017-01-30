@@ -123,13 +123,13 @@
         echo "<form name='modificar_contacto' action='modificar_contacto.proc.php?cont_id=".$contacto['cont_id']."' id='contact_form' runat='server'>";
         $foto=$contacto['cont_foto'];
         if (file_exists ($foto)){
-                           echo "<div class='col-xs-1'></div><div class='col-sm-4 text-center'> <a href='menu_contacto.php?cont_id=".$contacto['cont_id']."'> <img src=".$foto." width='170' height='170' class='img-responsive img-circle' alt=".$foto." style='background-color: white' align='center' /></a></div>";
+                           echo "<div class='col-xs-1'></div><div class='col-sm-3 text-center'> <a href='menu_contacto.php?cont_id=".$contacto['cont_id']."'> <img src=".$foto." width='170' height='170' class='img-responsive img-circle' alt=".$foto." style='background-color: white' align='center' /></a></div>";
                         } else {
-                            echo "<div class='col-xs-1'></div><div class='col-sm-4 text-center'><a href='menu_contacto.php?cont_id=".$contacto['cont_id']."'><img src='img/0.png' width='170' height='170' class='img-responsive img-circle' alt='Imagen no encontrada' style='background-color: white' align='center' /></a></div>";
+                            echo "<div class='col-xs-1'></div><div class='col-sm-3 text-center'><a href='menu_contacto.php?cont_id=".$contacto['cont_id']."'><img src='img/0.png' width='170' height='170' class='img-responsive img-circle' alt='Imagen no encontrada' style='background-color: white' align='center' /></a></div>";
                         }
 
         echo "<div class='col-sm-2 text-right'> ";
-        echo "<p style='color: #ffffff'>Nombre :<br><br>Apellido :<br><br>Cumpleaños :<br><br> Email :<br><br> 1r Telefono :<br><br> 1a Dirección :<br><br>2n Telefono : <br><br>2a Dirección : </p></div><div class='col-sm-2' text-left'>";
+        echo "<h6 style='color: #ffffff'>Nombre :<br><br><br><h6 style='color: #ffffff'>Apellido :<br><br><br><h6 style='color: #ffffff'>Cumpleaños :<br><br><br><h6 style='color: #ffffff'> Email :<br><br><br> <h6 style='color: #ffffff'>1r Telefono :<br><br><br> <h6 style='color: #ffffff'>1a Dirección :<br><br><br><h6 style='color: #ffffff'>2n Telefono : <br><br><br><h6 style='color: #ffffff'>2a Dirección : </h6></div><div class='col-sm-2' text-left'>";
         echo "<input type='text' name='nombre' placeholder='Nombre contacto' value='".$contacto['cont_nombre']."' class='form-control'/></br>";
         echo "<input type='text' name='apellido' placeholder='Apellido contacto' value='".$contacto['cont_apellido']."' class='form-control'></br>";
         echo "<input type='date' name='cumpleaños' step='1' min='1900-01-01'  value='".$contacto['cont_cumpleaños']."' class='form-control'/></br>";
@@ -160,7 +160,7 @@
 
       //end if(isset($_SESSION['mail'])){
       ?>
-<</body>
+</body>
 
 <footer>
         <div class="container">

@@ -80,10 +80,10 @@
                         <a href="#page-top"></a>
                     </li>
                     <li>
-                        <a href="login.php" >Login</a>
+                        <a href="modificar_usuario.php" >Edita tu perfil</a>
                     </li>
                     <li>
-                        <a href="login.php" >Login</a>
+                        <a href="login.php"  onclick="return Confirm(¿Deseas salir?)";>Log Out</a>
                     </li>
                     
                 </ul>

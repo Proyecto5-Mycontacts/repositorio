@@ -55,6 +55,14 @@
           } 
 }
   </script>
+
+  <style type="text/css">
+     #map {
+        height: 100%;
+        width: 75%;
+        display: block;
+      }
+  </style>
 </head>
 
 <body id="page-top" class="index">
@@ -81,10 +89,10 @@
                         <a href="#page-top"></a>
                     </li>
                     <li>
-                        <a href="login.php" >Login</a>
+                        <a href="modificar_usuario.php" >Edita tu perfil</a>
                     </li>
                     <li>
-                        <a href="login.php" >Login</a>
+                        <a href="login.php"  onclick="return Confirm(¿Deseas salir?)";>Log Out</a>
                     </li>
              
                 </ul>
@@ -116,32 +124,42 @@
 
         
                         if (file_exists ($foto)){
-                           echo "<div class='col-xs-1'></div><div class='col-sm-4 text-center'> <a href='menu_contacto.php?cont_id=".$contacto['cont_id']."'> <img src=".$foto." width='150' height='150' class='img-responsive img-circle' alt=".$foto." style='background-color: white' align='center' /></a></div>";
+                           echo "<div class='col-xs-1'></div><div class='col-sm-4 text-center'> <a href='menu_contacto.php?cont_id=".$contacto['cont_id']."'> <img src=".$foto." width='150' height='350' class='img-responsive img-circle' alt=".$foto." style='background-color: white' align='center' /></a></div>";
                         } else {
-                            echo "<div class='col-xs-1'></div><div class='col-sm-4 text-center'><a href='menu_contacto.php?cont_id=".$contacto['cont_id']."'><img src='img/users/0.png' width='150' height='150' class='img-responsive img-circle' alt='Imagen no encontrada' style='background-color: white' align='center' /></a></div>";
+                            echo "<div class='col-xs-1'></div><div class='col-sm-4 text-center'><a href='menu_contacto.php?cont_id=".$contacto['cont_id']."'><img src='img/users/0.png' width='300' height='300' class='img-responsive img-circle' alt='Imagen no encontrada' style='background-color: white' align='center' /></a></div>";
                         }
 
-        echo "<div class='col-sm-7' text-left'>";
+        echo "<div class='col-sm-4' text-left'>";
         echo "<h7 class='control'>Nombre : " .$contacto['cont_nombre']."</br></br>";
         echo "Apellido : " .$contacto['cont_apellido']."</br></br>";
         echo "Cumpleaños : " .$contacto['cont_cumpleaños']."</br></br>";
         echo "Email : " .$contacto['cont_email']."</br></br>";
         echo "1r Telefono : " .$contacto['cont_telefono1']."</br></br>";
         echo "1a Dirección : " .$contacto['cont_direccion1']."</br></br>";
+
         $direccion1 = $contacto['cont_direccion1'];
         $direccion2 = $contacto['cont_direccion2']; 
+        echo "<input type='text' id='address' value='".$direccion1."' style='display:none';>";
+        echo "<input type='text' id='address2' value='".$direccion2."' style='display:none';>";
+
+
         echo "2n Telefono : " .$contacto['cont_telefono2']."</br></br>";
         echo "2a Dirección : " .$contacto['cont_direccion2']."</br></br></h7>";
+        ?>
+        
+        </div>
+        <div id='map' class="col-lg-12 text-left" style='height:300px; width: 275px; visibility:hidden; ' >
+        <?php
 
         echo "</div></div><div class='col-lg-12' text-left'> <br></div>";
 
-        echo"<div class='col-md-1'></div> <div class='col-xs-1' text-left'>";
+        echo"<div class='col-lg-1'><br></div> <div class='col-xs-1' text-left'>";
         echo"<a href='modificar_contacto.php?cont_id=".$contacto['cont_id']."'><img src='img/icons/modificar.png' width='30' height='30'/></a></br></div>";
         ?>
 
         <div class='col-xs-1' text-right'><a href='#' onclick='return Confirmar(<?php echo $contacto['cont_id']?>);'><img src='img/icons/eliminar.png' width='30' height='30'/></a></br></div>
         <?php
-        echo"<div class='col-xs-1' text-left'><a href='' id='mostrar'> <img src='img/icons/googlemaps.ico' width='30' height='30' /></a></br></div>";
+        echo"<div class='col-xs-1' text-left'><img style='cursor:hand' src='img/icons/googlemaps.ico' width='30' height='30' id='submit'/></br></div>";
         echo"</div>";
       }
       
@@ -153,36 +171,95 @@
   </div></div></div></section>
 
 
-  <div id="map" style="display:none;"></div> 
+
+
  <script>
+
+ 
 function initMap() {
   var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 8,
-    center: {lat: -34.397, lng: 150.644}
+    zoom: 11,
+
+    center: {lat: 41.366505, lng: 2.116578}
   });
   var geocoder = new google.maps.Geocoder();
-
-  document.getElementById('mostrar').addEventListener('click', function() {
-    geocodeAddress(geocoder, map);
-  });
+  
+  document.getElementById('submit').addEventListener('click', function() {
+    geocodeAddress(geocoder, map);}  );
 }
 
 function geocodeAddress(geocoder, resultsMap) {
-  var address = <?php echo $direccion1;  ?>
+  var address = document.getElementById('address').value;
+  var address2 = document.getElementById('address2').value;
+
+
+  //alert(address);
+
   geocoder.geocode({'address': address}, function(results, status) {
     if (status === google.maps.GeocoderStatus.OK) {
-      resultsMap.setCenter(results[0].geometry.location);
-      var marker = new google.maps.Marker({
-        map: resultsMap,
-        position: results[0].geometry.location
-      });
+    
+     
+      var matriz_address[0] = results[0].geometry.location;
+alert(matriz_address[0]);
 
-      document.mostrar.style.display = 'block';
+     // resultsMap.setCenter(results[0].geometry.location);
+
+      //var marker = new google.maps.Marker({
+        //map: resultsMap,
+        //position: results[0].geometry.location,
+        //animation: google.maps.Animation.BOUNCE,
+         //title: "Estoy aqui!"
+      //});
+
+      //var contentString = address;
+      //var infowindow = new google.maps.InfoWindow({content: contentString} );
+       //marker.addListener('click', function() {infowindow.open(map, marker);} );
+
+    //document.getElementById('map').style.visibility='visible'
+      
 
     } else {
       alert('Geocode was not successful for the following reason: ' + status);
     }
   });
+
+  geocoder.geocode({'address2': address}, function(results, status) {
+    if (status === google.maps.GeocoderStatus.OK) {
+
+      alert(matriz_address[1]);
+     
+      var matriz_address[1] = results[0].geometry.location;
+
+
+    } else {
+      alert('Geocode was not successful for the following reason: ' + status);
+    }
+  });
+
+
+//for (i = 0; i < matriz_address.length; i++) {  
+  //      marker = new google.maps.Marker({
+    //      position: new google.maps.LatLng(matriz_address[i][1], matriz_address[i][2]),
+      //    map: map
+        //});
+
+
+// resultsMap.setCenter(results[0].geometry.location);
+
+  //    var marker = new google.maps.Marker({
+    //    map: resultsMap,
+      //  position: results[0].geometry.location,
+        //animation: google.maps.Animation.BOUNCE,
+         //title: "Estoy aqui!"
+      //});
+
+      //var contentString = address;
+      //var infowindow = new google.maps.InfoWindow({content: contentString} );
+       //marker.addListener('click', function() {infowindow.open(map, marker);} );
+
+    document.getElementById('map').style.visibility='visible'
+
+
 }
 
     </script>

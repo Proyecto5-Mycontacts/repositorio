@@ -78,7 +78,7 @@
                 <a class="navbar-brand page-scroll" href="#page-top"> <img src="img/logos/logo.png" width="150" height="50" alt="MyContacts"></a>
                 <?php
                   if(isset($_SESSION['usu_nombre']) ){
-                    echo "<a href='main.php' class='navbar-brand'  align='right'>".$_SESSION['usu_nombre'].", Bienvenido!</a>";
+                    echo "<a href='main.php' class='navbar-brand'  align='right'>".$_SESSION['usu_nombre']."</a>";
                 ?>
             </div>
 
@@ -90,6 +90,12 @@
                     </li>
                     <li>
                         <a href="modificar_usuario.php" >Edita tu perfil</a>
+                    </li>
+                    <li>
+                        <a href="main.php";>Mis contactos</a>
+                    </li>
+                    <li>
+                        <a href="anadir_contacto.php";>Añadir contacto</a>
                     </li>
                     <li>
                         <a href="login.php"  onclick="return Confirm(¿Deseas salir?)";>Log Out</a>
@@ -175,93 +181,49 @@
 
  <script>
 
- 
-function initMap() {
-  var map = new google.maps.Map(document.getElementById('map'), {
+ document.getElementById('submit').addEventListener('click',  (function () { 
+
+    
+    var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 11,
 
     center: {lat: 41.366505, lng: 2.116578}
   });
-  var geocoder = new google.maps.Geocoder();
-  
-  document.getElementById('submit').addEventListener('click', function() {
-    geocodeAddress(geocoder, map);}  );
-}
 
-function geocodeAddress(geocoder, resultsMap) {
-  var address = document.getElementById('address').value;
-  var address2 = document.getElementById('address2').value;
+ var address = document.getElementById('address').value;
+ var address2 = document.getElementById('address2').value;
+
+    var addresses = [address, address2];
+
+//alert(addresses[0]);
+//alert(addresses[1]);
+
+ document.getElementById('map').style.visibility='visible'
 
 
-  //alert(address);
+    for (var x = 0; x < addresses.length; x++) {
+        $.getJSON('http://maps.googleapis.com/maps/api/geocode/json?address='+addresses[x]+'&sensor=false', null, function (data) {
+            var p = data.results[0].geometry.location
+            alert( data.results[0].address_components[0].long_name);
+          alert(data.results[0].formatted_address); 
 
-  geocoder.geocode({'address': address}, function(results, status) {
-    if (status === google.maps.GeocoderStatus.OK) {
-    
-     
-      var matriz_address[0] = results[0].geometry.location;
-alert(matriz_address[0]);
+            //alert(p.lat);
+            //alert(p.lng);
+            var latlng = new google.maps.LatLng(p.lat, p.lng);
+            new google.maps.Marker({
+                position: latlng,
+                map: map,
+                title: "Dirección: "+ data.results[0].formatted_address 
+            });
+             
 
-     // resultsMap.setCenter(results[0].geometry.location);
+            });   
 
-      //var marker = new google.maps.Marker({
-        //map: resultsMap,
-        //position: results[0].geometry.location,
-        //animation: google.maps.Animation.BOUNCE,
-         //title: "Estoy aqui!"
-      //});
 
-      //var contentString = address;
-      //var infowindow = new google.maps.InfoWindow({content: contentString} );
-       //marker.addListener('click', function() {infowindow.open(map, marker);} );
-
-    //document.getElementById('map').style.visibility='visible'
-      
-
-    } else {
-      alert('Geocode was not successful for the following reason: ' + status);
     }
-  });
-
-  geocoder.geocode({'address2': address}, function(results, status) {
-    if (status === google.maps.GeocoderStatus.OK) {
-
-      alert(matriz_address[1]);
      
-      var matriz_address[1] = results[0].geometry.location;
-
-
-    } else {
-      alert('Geocode was not successful for the following reason: ' + status);
-    }
-  });
-
-
-//for (i = 0; i < matriz_address.length; i++) {  
-  //      marker = new google.maps.Marker({
-    //      position: new google.maps.LatLng(matriz_address[i][1], matriz_address[i][2]),
-      //    map: map
-        //});
-
-
-// resultsMap.setCenter(results[0].geometry.location);
-
-  //    var marker = new google.maps.Marker({
-    //    map: resultsMap,
-      //  position: results[0].geometry.location,
-        //animation: google.maps.Animation.BOUNCE,
-         //title: "Estoy aqui!"
-      //});
-
-      //var contentString = address;
-      //var infowindow = new google.maps.InfoWindow({content: contentString} );
-       //marker.addListener('click', function() {infowindow.open(map, marker);} );
-
-    document.getElementById('map').style.visibility='visible'
-
-
 }
-
+ ));
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBzJB0SpA6BAJfM8gtXucenP27gNDmdhjk&callback=initMap"
         async defer></script>

@@ -69,7 +69,7 @@
                 <a class="navbar-brand page-scroll" href="#page-top"> <img src="img/logos/logo.png" width="150" height="50" alt="MyContacts"></a>
                 <?php
                   if(isset($_SESSION['usu_nombre']) ){
-                    echo "<a href='main.php' class='navbar-brand'  align='right'>".$_SESSION['usu_nombre'].", Bienvenido!</a>";
+                    echo "<a href='main.php' class='navbar-brand'  align='right'>".$_SESSION['usu_nombre']."</a>";
                 ?>
             </div>
 
@@ -79,11 +79,14 @@
                     <li class="hidden">
                         <a href="#page-top"></a>
                     </li>
-                    <li>
-                        <a href="login.php" >Login</a>
+                  <li>
+                        <a href="main.php" >Mis contactos</a>
                     </li>
                     <li>
-                        <a href="login.php" >Login</a>
+                        <a href="modificar_usuario.php" >Edita tu perfil</a>
+                    </li>
+                    <li>
+                        <a href="login.php"  onclick="return Confirm(¿Deseas salir?)";>Log Out</a>
                     </li>
                     
                 </ul>

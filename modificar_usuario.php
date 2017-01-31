@@ -69,7 +69,7 @@
                 <a class="navbar-brand page-scroll" href="#page-top"> <img src="img/logos/logo.png" width="150" height="50" alt="MyContacts"></a>
                 <?php
                   if(isset($_SESSION['usu_nombre']) ){
-                    echo "<a href='main.php' class='navbar-brand'  align='right'>".$_SESSION['usu_nombre'].", Bienvenido!</a>";
+                    echo "<a href='main.php' class='navbar-brand'  align='right'>".$_SESSION['usu_nombre']."</a>";
                 ?>
             </div>
 
@@ -80,7 +80,10 @@
                         <a href="#page-top"></a>
                     </li>
                     <li>
-                        <a href="modificar_usuario.php" >Edita tu perfil</a>
+                          <a href="main.php" >Mis contactos</a>
+                    </li>
+                    <li>
+                        <a href="anadir_contacto.php" >Añadir contacto</a>
                     </li>
                     <li>
                         <a href="login.php"  onclick="return Confirm(¿Deseas salir?)";>Log Out</a>
@@ -124,7 +127,7 @@
 
 
         echo "<div class='col-sm-2 text-right'> ";
-        echo "<h6 style='color: #ffffff'>Nombre :<br><br><br><h6 style='color: #ffffff'>Email :<br><br><br><h6 style='color: #ffffff'> Contraseña :<br><br><br><h6 style='color: #ffffff'> Repite Contraseña :<br><br><br> </h6></div><div class='col-sm-2' text-left'>";
+        echo " <h7 class='control'>Nombre :</h7><br> <h7 class='control'>Email :</h7><br> <h7 class='control'> Contraseña :</h7><br> <h7 class='control'> Repite Contraseña :</h7><br><br><br> </h7></div><div class='col-sm-2' text-left'>";
 
 
         echo "<input type='text' name='nombre' placeholder='Nombre usuario' value='".$usuario['usu_nombre']."' class='form-control'/></br>";
@@ -133,12 +136,14 @@
         echo "<input type='password' name='repite_password' placeholder='Repite Contraseña' value='".$usuario['usu_password']."' class='form-control'/></br>";
         echo "<input type='text' style='display:none;' name='usu_id' value=".$usuario['usu_id']." />";
         ;
-        echo "</div><div class='col-sm-3 text-center'>";;
-
-        echo "<br><br><br><br><br><button type='submit' class='page-scroll btn btn-xl'>Modificar contacto</button></div>";
-        ?>
-         <div class='col-xs-1' text-right'>Eliminar cuenta<a href='#' onclick='return Confirmar(<?php echo $usuario['usu_id']?>);'><img src='img/icons/eliminar.png' width='30' height='30'/></a></br></div>
-        <?php
+        echo "</div>";;
+         ?>
+         <div class='col-xs-2 text-right'><br><h7 class='control'> Eliminar cuenta: </h7></div><div class='col-md-6 text-left'><a href='#' onclick='return Confirmar(<?php echo $usuario['usu_id']?>);'><img src='img/icons/eliminar.png' width='65' height='65'/></a></br></div>
+         <?php
+        echo "<br><br><br><br><br><br><button type='submit' class='page-scroll btn btn-xl'>Modificar contacto</button></div>";
+       
+         
+        
       }
 } else{
        // echo "No tienes contactos, agrega a uno!";

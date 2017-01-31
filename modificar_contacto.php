@@ -80,6 +80,12 @@
                         <a href="#page-top"></a>
                     </li>
                     <li>
+                           <a href="main.php" >Mis contactos</a>
+                    </li>
+                    <li>
+                        <a href="anadir_contacto.php" >Añadir Contacto</a>
+                    </li>
+                    <li>
                         <a href="modificar_usuario.php" >Edita tu perfil</a>
                     </li>
                     <li>

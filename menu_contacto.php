@@ -28,6 +28,21 @@
     <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
 
+<!-- jQuery -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js" integrity="sha384-mE6eXfrb8jxl0rzJDBRanYqgBxtJ6Unn4/1F7q4xRRyIw7Vdg9jP4ycT7x1iVsgb" crossorigin="anonymous"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="js/jqBootstrapValidation.js"></script>
+    <script src="js/contact_me.js"></script>
+
+    <!-- Theme JavaScript -->
+    <script src="js/agency.min.js"></script>
     <!-- Theme CSS -->
     <link href="css/agency.css" rel="stylesheet">
 
@@ -128,7 +143,8 @@
       $foto='img/users/'.$contacto['cont_foto'];
 
 
-                         if (file_exists ($foto)){
+        
+                        if (file_exists ($foto)){
                            echo "<div class='col-xs-1'></div><div class='team-member col-sm-4 text-center'> <a href='menu_contacto.php?cont_id=".$contacto['cont_id']."'> <img src=".$foto." width='300' height='300' class='img-responsive img-circle' alt=".$foto." style='background-color: white' align='center' /></a></div>";
                         } else {
                             echo "<div class='col-xs-1'></div><div class='team-member col-sm-4 text-center'><a href='menu_contacto.php?cont_id=".$contacto['cont_id']."'><img src='img/users/0.png' width='300' height='300' class='img-responsive img-circle' alt='Imagen no encontrada' style='background-color: white' align='center' /></a></div>";
@@ -140,7 +156,7 @@
         echo "Cumpleaños : " .$contacto['cont_cumpleaños']."</br></br>";
         echo "Email : " .$contacto['cont_email']."</br></br>";
         echo "1r Telefono : " .$contacto['cont_telefono1']."</br></br>";
-        echo "1a Dirección : " .$contacto['cont_direccion1']."</br></br>";
+        echo "1a Dirección : " .$contacto['cont_direccion1']."<br><img style='cursor:hand' src='img/icons/icono_ruta.png' width='30' height='30' id='trazar_ruta1'/></br>";
 
         $direccion1 = $contacto['cont_direccion1'];
         $direccion2 = $contacto['cont_direccion2']; 
@@ -149,14 +165,15 @@
 
 
         echo "2n Telefono : " .$contacto['cont_telefono2']."</br></br>";
-        echo "2a Dirección : " .$contacto['cont_direccion2']."</br></br></h7>";
+        echo "2a Dirección : " .$contacto['cont_direccion2']."</br></br></h7><br><img style='cursor:hand' src='img/icons/icono_ruta.png' width='30' height='30' id='trazar_ruta2'/>";
         ?>
         
         </div>
         <div id='map' class="col-lg-12 text-left" style='height:300px; width: 275px; visibility:hidden; ' >
+        <div id="panel_ruta" style="float:right; overflow: auto; width:30%; height: 500px"></div>
         <?php
 
-          echo "</div></div></div>";
+        echo "</div></div></div>";
 
         echo"<div class='col-xs-2 text-right'>";
         echo"<a href='modificar_contacto.php?cont_id=".$contacto['cont_id']."'><img src='img/icons/modificar.png' width='30' height='30'/></a></br></div>";
@@ -166,7 +183,6 @@
         <?php
         echo"<div class='col-xs-1 text-right'><a href='#'> <img style='cursor:hand' src='img/icons/googlemaps.png' width='30' height='30' id='submit'/></a></br></div>";
         echo"</div>";
-
       }
       
 
@@ -177,6 +193,19 @@
   </div></div></div></section>
 
 
+<br />
+<h3>Opciones</h3>
+<div id="rutaOps">
+    <select id="modo_viaje" class="opciones_ruta">
+        <option value="DRIVING" selected="selected">Auto</option>
+        <option value="BICYCLING">Bicicleta</option>
+        <option value="WALKING">Caminando</option>
+    </select>
+
+    <input id='origen' type='text' style='visibility: hidden;' value='Av. Mare de Déu de Bellvitge, 100-110,'>
+
+</div>
+<br />
 
 
  <script>
@@ -185,7 +214,7 @@
 
     
     var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 10,
+    zoom: 9,
 
     center: {lat: 41.366505, lng: 2.116578}
   });
@@ -204,7 +233,7 @@
     for (var x = 0; x < addresses.length; x++) {
         $.getJSON('http://maps.googleapis.com/maps/api/geocode/json?address='+addresses[x]+'&sensor=false', null, function (data) {
             var p = data.results[0].geometry.location
-           // alert( data.results[0].address_components[0].long_name);
+            //alert( data.results[0].address_components[0].long_name);
           //alert(data.results[0].formatted_address); 
 
             //alert(p.lat);
@@ -222,6 +251,70 @@
 
     }
      
+}
+ ));
+
+document.getElementById('trazar_ruta1').addEventListener('click',  (function () {
+
+ var directionsDisplay = new google.maps.DirectionsRenderer();
+var directionsService = new google.maps.DirectionsService();
+var origen = document.getElementById('origen').value;
+var destino = document.getElementById('address').value;
+ var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 9,
+
+    center: {lat: 41.366505, lng: 2.116578}
+  });
+var request = {
+ origin: origen,
+ destination: destino,
+ travelMode: google.maps.DirectionsTravelMode[$('#modo_viaje').val()],
+ unitSystem: google.maps.DirectionsUnitSystem.METRIC,
+ provideRouteAlternatives: true
+ };
+
+ directionsService.route(request, function(response, status) {
+    if (status == google.maps.DirectionsStatus.OK) {
+        directionsDisplay.setMap(map);
+        directionsDisplay.setPanel($("#panel_ruta").get(0));
+        directionsDisplay.setDirections(response);
+    } else {
+            alert("No existen rutas entre ambos puntos");
+    }
+});
+document.getElementById('map').style.visibility='visible'
+}
+ ));
+
+document.getElementById('trazar_ruta2').addEventListener('click',  (function () {
+
+ var directionsDisplay = new google.maps.DirectionsRenderer();
+var directionsService = new google.maps.DirectionsService();
+var origen = document.getElementById('origen').value;
+var destino = document.getElementById('address2').value;
+ var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 9,
+
+    center: {lat: 41.366505, lng: 2.116578}
+  });
+var request = {
+ origin: origen,
+ destination: destino,
+ travelMode: google.maps.DirectionsTravelMode[$('#modo_viaje').val()],
+ unitSystem: google.maps.DirectionsUnitSystem.METRIC,
+ provideRouteAlternatives: true
+ };
+
+ directionsService.route(request, function(response, status) {
+    if (status == google.maps.DirectionsStatus.OK) {
+        directionsDisplay.setMap(map);
+        directionsDisplay.setPanel($("#panel_ruta").get(0));
+        directionsDisplay.setDirections(response);
+    } else {
+            alert("No existen rutas entre ambos puntos");
+    }
+});
+document.getElementById('map').style.visibility='visible'
 }
  ));
     </script>
@@ -260,9 +353,9 @@
                 </div>
                 <div class="col-md-4">
                     <ul class="list-inline quicklinks">
-                        <li><a href="#">Contacto</a>
+                        <li><a href="">Contacto</a>
                         </li>
-                        <li><a href="#">Terms of Use</a>
+                        <li><a href="">Ayuda</a>
                         </li>
                     </ul>
                 </div>

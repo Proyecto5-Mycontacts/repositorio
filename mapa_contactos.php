@@ -132,14 +132,6 @@
 
  <script>
 
- window.onload = function () { 
-
-    
-    var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 9,
-
-    center: {lat: 41.366505, lng: 2.116578}
-  });
 
 var direccion1 = document.getElementsByClassName('direccion1');
 var direccion2 = document.getElementsByClassName('direccion2');
@@ -149,21 +141,30 @@ var nombre = document.getElementsByClassName('nombre');
 
 var addresses1 = [];
 var addresses2 = [];
-var names = [];
+var names = []
+ window.onload = function () { 
 
-//la direccion 1 va del 0 al 2
+    
+    var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 9,
+
+    center: {lat: 41.366505, lng: 2.116578}
+  });
+;
+
+//la direccion 1 va del 0 al ...
 for (var i =0;  i < direccion1.length; i++) {
 
     addresses1[i]=direccion1[i].value;
     //alert(addresses1[i]);
 }
-//la direccion 2 va del 0 al 2
+//la direccion 2 va del 0 al ...
 for (var i =0;  i < direccion2.length; i++) {
 
     addresses2[i]=direccion2[i].value;
     //alert(addresses2[i]);
 }
-//los nombres van del 0 al 2
+//los nombres van del 0 al ...
 for (var i =0;  i < nombre.length; i++) {
 
     names[i]=nombre[i].value
@@ -173,10 +174,13 @@ for (var i =0;  i < nombre.length; i++) {
 
  document.getElementById('map').style.visibility='visible'
 
+    var c = 0;
+    var z = 0;
 
     for (var x = 0; x < addresses1.length; x++) {
+        
         $.getJSON('http://maps.googleapis.com/maps/api/geocode/json?address='+addresses1[x]+'&sensor=false', null, function (data) {
-
+            
             var p = data.results[0].geometry.location
             //alert( data.results[0].address_components[0].long_name);
           //alert(data.results[0].formatted_address); 
@@ -187,14 +191,15 @@ for (var i =0;  i < nombre.length; i++) {
             new google.maps.Marker({
                 position: latlng,
                 map: map,
-                title: "la dirección de: "+ nombre[x] +" es: "+ data.results[0].formatted_address 
+                title: "la dirección de: "+ nombre[c].value +" es: "+ data.results[0].formatted_address 
             });
              
-
+           
+        c=c+1;
             });  
 
             $.getJSON('http://maps.googleapis.com/maps/api/geocode/json?address='+addresses2[x]+'&sensor=false', null, function (data) {
-            
+          
             var j = data.results[0].geometry.location
             //alert( data.results[0].address_components[0].long_name);
           //alert(data.results[0].formatted_address); 
@@ -205,13 +210,14 @@ for (var i =0;  i < nombre.length; i++) {
             new google.maps.Marker({
                 position: latlng2,
                 map: map,
-                title: "la dirección de: "+ nombre[x] +" es: "+ data.results[0].formatted_address
+                title: "la dirección de: "+ nombre[z].value +" es: "+ data.results[0].formatted_address
             });
              
+            z=z+1;
 
             });  
 
-
+      
     }
      
 }

@@ -74,6 +74,9 @@
                         <a href="#page-top"></a>
                     </li>
                     <li>
+                        <a href="mapa_contactos.php" >Mapa de contactos</a>
+                    </li>
+                    <li>
                         <a href="anadir_contacto.php" >Añadir contacto</a>
                     </li>
                     <li>

@@ -101,14 +101,13 @@
                 
         <div class="row"> -->
      
-<section id="team" class="bg-darkest-gray">
-        <div class="container">
-            <div class="row">
-        <div id='map' class='col-lg-12 text-left' style='height:400px; width:1000px; visibility:hidden;' >
+<section id="team" class="jumbotron bg-darkest-gray">
+        
+         
+        <div id='map' style='height:450px; width:100%; visibility:hidden;' >
+      
         </div>
-        </div>
-        </div>
-
+       
         </section>
   <?php
 
@@ -216,7 +215,7 @@ for (var i =0;  i < nombre.length; i++) {
             new google.maps.Marker({
                 position: latlng2,
                 map: map,
-                title: title: "La segunda dirección de "+ nombre[c].value +" es: "+ data.results[0].formatted_address 
+                title:  "La segunda dirección de "+ nombre[c].value +" es: "+ data.results[0].formatted_address 
             });
              
             z=z+1;

@@ -128,11 +128,10 @@
       $foto='img/users/'.$contacto['cont_foto'];
 
 
-        
-                        if (file_exists ($foto)){
-                           echo "<div class='col-xs-1'></div><div class='col-sm-4 text-center'> <a href='menu_contacto.php?cont_id=".$contacto['cont_id']."'> <img src=".$foto." width='150' height='350' class='img-responsive img-circle' alt=".$foto." style='background-color: white' align='center' /></a></div>";
+                         if (file_exists ($foto)){
+                           echo "<div class='col-xs-1'></div><div class='team-member col-sm-4 text-center'> <a href='menu_contacto.php?cont_id=".$contacto['cont_id']."'> <img src=".$foto." width='300' height='300' class='img-responsive img-circle' alt=".$foto." style='background-color: white' align='center' /></a></div>";
                         } else {
-                            echo "<div class='col-xs-1'></div><div class='col-sm-4 text-center'><a href='menu_contacto.php?cont_id=".$contacto['cont_id']."'><img src='img/users/0.png' width='300' height='300' class='img-responsive img-circle' alt='Imagen no encontrada' style='background-color: white' align='center' /></a></div>";
+                            echo "<div class='col-xs-1'></div><div class='team-member col-sm-4 text-center'><a href='menu_contacto.php?cont_id=".$contacto['cont_id']."'><img src='img/users/0.png' width='300' height='300' class='img-responsive img-circle' alt='Imagen no encontrada' style='background-color: white' align='center' /></a></div>";
                         }
 
         echo "<div class='col-sm-4' text-left'>";
@@ -157,16 +156,17 @@
         <div id='map' class="col-lg-12 text-left" style='height:300px; width: 275px; visibility:hidden; ' >
         <?php
 
-        echo "</div></div><div class='col-lg-12' text-left'> <br></div>";
+          echo "</div></div></div>";
 
-        echo"<div class='col-lg-1'><br></div> <div class='col-xs-1' text-left'>";
+        echo"<div class='col-xs-2 text-right'>";
         echo"<a href='modificar_contacto.php?cont_id=".$contacto['cont_id']."'><img src='img/icons/modificar.png' width='30' height='30'/></a></br></div>";
         ?>
 
-        <div class='col-xs-1' text-right'><a href='#' onclick='return Confirmar(<?php echo $contacto['cont_id']?>);'><img src='img/icons/eliminar.png' width='30' height='30'/></a></br></div>
+        <div class='col-xs-1 text-right'><a href='#' onclick='return Confirmar(<?php echo $contacto['cont_id']?>);'><img src='img/icons/eliminar.png' width='30' height='30'/></a></br></div>
         <?php
-        echo"<div class='col-xs-1' text-left'><img style='cursor:hand' src='img/icons/googlemaps.ico' width='30' height='30' id='submit'/></br></div>";
+        echo"<div class='col-xs-1 text-right'><a href='#'> <img style='cursor:hand' src='img/icons/googlemaps.png' width='30' height='30' id='submit'/></a></br></div>";
         echo"</div>";
+
       }
       
 

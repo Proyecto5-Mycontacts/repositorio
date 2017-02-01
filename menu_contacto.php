@@ -5,6 +5,7 @@
   include("conexion.proc.php");
 ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,21 +29,6 @@
     <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
 
-<!-- jQuery -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-
-    <!-- Plugin JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js" integrity="sha384-mE6eXfrb8jxl0rzJDBRanYqgBxtJ6Unn4/1F7q4xRRyIw7Vdg9jP4ycT7x1iVsgb" crossorigin="anonymous"></script>
-
-    <!-- Contact Form JavaScript -->
-    <script src="js/jqBootstrapValidation.js"></script>
-    <script src="js/contact_me.js"></script>
-
-    <!-- Theme JavaScript -->
-    <script src="js/agency.min.js"></script>
     <!-- Theme CSS -->
     <link href="css/agency.css" rel="stylesheet">
 
@@ -52,7 +38,7 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js" integrity="sha384-0s5Pv64cNZJieYFkXYOTId2HMA2Lfb6q2nAcx2n0RTLUnCAoTTsS0nKEO27XyKcY" crossorigin="anonymous"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js" integrity="sha384-ZoaMbDF+4LeFxg6WdScQ9nnR1QC2MIRxA1O9KWEXQwns1G8UNyIEZIQidzb0T1fo" crossorigin="anonymous"></script>
     <![endif]-->
-  <!-- jQuery -->
+      <!-- jQuery -->
     <script src="vendor/jquery/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
@@ -62,38 +48,22 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js" integrity="sha384-mE6eXfrb8jxl0rzJDBRanYqgBxtJ6Unn4/1F7q4xRRyIw7Vdg9jP4ycT7x1iVsgb" crossorigin="anonymous"></script>
    <script src="js/agency.min.js"></script>
 <script type="text/javascript" src="js/validacion.js"> </script>
-<script type="text/javascript">
-  function Confirmar(cont_id){
-
-         if( confirm( "Estas seguro que deseas borrar este contacto?" ) ) {
-                  window.location = "eliminar_contacto.proc.php?cont_id="+ cont_id;
-          } 
-}
-  </script>
-
-  <style type="text/css">
-     #map {
-        height: 100%;
-        width: 75%;
-        display: block;
-      }
-  </style>
 </head>
 
 <body id="page-top" class="index">
-
-    <!-- Navigation -->
-    <nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top">
+ <!-- Navigation -->
+    <nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top" style="background-color: #222222 ">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header page-scroll">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand page-scroll" href="#page-top"> <img src="img/logos/logo.png" width="150" height="50" alt="MyContacts"></a>
+                
+                <a class="navbar-brand page-scroll" href="#page-top"> <img src="img/logos/logo.png" width="125" height="45" alt="MyContacts"></a>
                 <?php
                   if(isset($_SESSION['usu_nombre']) ){
-                    echo "<a href='main.php' class='navbar-brand'  align='right'>".$_SESSION['usu_nombre']."</a>";
+                     echo "<a href='main.php' class='navbar-brand'  align='right'>".$_SESSION['usu_nombre']."</a>";
                 ?>
             </div>
 
@@ -156,7 +126,7 @@
         echo "Cumpleaños : " .$contacto['cont_cumpleaños']."</br></br>";
         echo "Email : " .$contacto['cont_email']."</br></br>";
         echo "1r Telefono : " .$contacto['cont_telefono1']."</br></br>";
-        echo "1a Dirección : " .$contacto['cont_direccion1']."<br><img style='cursor:hand' src='img/icons/icono_ruta.png' width='30' height='30' id='trazar_ruta1'/></br>";
+        echo "1a Dirección : " .$contacto['cont_direccion1']."";
 
         $direccion1 = $contacto['cont_direccion1'];
         $direccion2 = $contacto['cont_direccion2']; 
@@ -165,7 +135,7 @@
 
 
         echo "2n Telefono : " .$contacto['cont_telefono2']."</br></br>";
-        echo "2a Dirección : " .$contacto['cont_direccion2']."</br></br></h7><br><img style='cursor:hand' src='img/icons/icono_ruta.png' width='30' height='30' id='trazar_ruta2'/>";
+        echo "2a Dirección : " .$contacto['cont_direccion2']."</br></br></h7><br>"
         ?>
         
         </div>
@@ -181,8 +151,28 @@
 
         <div class='col-xs-1 text-right'><a href='#' onclick='return Confirmar(<?php echo $contacto['cont_id']?>);'><img src='img/icons/eliminar.png' width='30' height='30'/></a></br></div>
         <?php
-        echo"<div class='col-xs-1 text-right'><a href='#'> <img style='cursor:hand' src='img/icons/googlemaps.png' width='30' height='30' id='submit'/></a></br></div>";
-        echo"</div>";
+        echo"<div class='col-xs-1 text-right'><a href='#'> <img style='cursor:hand' src='img/icons/googlemaps.png' width='30' height='30' id='submit'/></a></br></div> <div class='col-xs-1 text-right'>
+            <img style='cursor:hand'title='Realizar ruta de dirección 1' src='img/icons/ruta.png' width='30' height='30' id='trazar_ruta1'/></div>
+            <div class='col-xs-1 text-right'>
+            <img style='cursor:hand' title='Realizar ruta de dirección 2' src='img/icons/ruta.png' width='30' height='30' id='trazar_ruta2'/></div>" ;
+        
+        ?>
+
+           
+            <div class='col-xs-2 text-right' id="rutaOps">
+             <h7 class='control'>Opciones</h7>
+                <select id="modo_viaje" class="form-control">
+                    <option value="DRIVING" selected="selected">Coche</option>
+                    <option value="BICYCLING">Bicicleta</option>
+                    <option value="WALKING">Caminando</option>
+                </select>
+
+                <input id='origen' type='text' style='visibility: hidden;' value='Av. Mare de Déu de Bellvitge, 100-110,'>
+
+            </div></div>
+        <?php 
+
+
       }
       
 
@@ -193,19 +183,8 @@
   </div></div></div></section>
 
 
-<br />
-<h3>Opciones</h3>
-<div id="rutaOps">
-    <select id="modo_viaje" class="opciones_ruta">
-        <option value="DRIVING" selected="selected">Auto</option>
-        <option value="BICYCLING">Bicicleta</option>
-        <option value="WALKING">Caminando</option>
-    </select>
 
-    <input id='origen' type='text' style='visibility: hidden;' value='Av. Mare de Déu de Bellvitge, 100-110,'>
 
-</div>
-<br />
 
 
  <script>

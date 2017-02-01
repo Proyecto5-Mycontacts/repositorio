@@ -185,7 +185,7 @@
 
     
     var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 11,
+    zoom: 10,
 
     center: {lat: 41.366505, lng: 2.116578}
   });
@@ -204,8 +204,8 @@
     for (var x = 0; x < addresses.length; x++) {
         $.getJSON('http://maps.googleapis.com/maps/api/geocode/json?address='+addresses[x]+'&sensor=false', null, function (data) {
             var p = data.results[0].geometry.location
-            alert( data.results[0].address_components[0].long_name);
-          alert(data.results[0].formatted_address); 
+           // alert( data.results[0].address_components[0].long_name);
+          //alert(data.results[0].formatted_address); 
 
             //alert(p.lat);
             //alert(p.lng);

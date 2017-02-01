@@ -63,7 +63,7 @@
                 <a class="navbar-brand page-scroll" href="#page-top"> <img src="img/logos/logo.png" width="125" height="45" alt="MyContacts"></a>
                 <?php
                   if(isset($_SESSION['usu_nombre']) ){
-                    echo "<p class='navbar-brand'  align='right'>".$_SESSION['usu_nombre']."</p>" ;
+                     echo "<a href='main.php' class='navbar-brand'  align='right'>".$_SESSION['usu_nombre']."</a>";
                 ?>
             </div>
 
@@ -73,8 +73,14 @@
                     <li class="hidden">
                         <a href="#page-top"></a>
                     </li>
-                    <li>
+                   <li>
                         <a href="modificar_usuario.php" >Edita tu perfil</a>
+                    </li>
+                    <li>
+                        <a href="main.php";>Mis contactos</a>
+                    </li>
+                    <li>
+                        <a href="anadir_contacto.php";>Añadir contacto</a>
                     </li>
                     <li>
                         <a href="login.php"  onclick="return Confirm(¿Deseas salir?)";>Log Out</a>
@@ -191,7 +197,7 @@ for (var i =0;  i < nombre.length; i++) {
             new google.maps.Marker({
                 position: latlng,
                 map: map,
-                title: "la dirección de: "+ nombre[c].value +" es: "+ data.results[0].formatted_address 
+                title: "La primera dirección de "+ nombre[c].value +" es: "+ data.results[0].formatted_address 
             });
              
            
@@ -210,7 +216,7 @@ for (var i =0;  i < nombre.length; i++) {
             new google.maps.Marker({
                 position: latlng2,
                 map: map,
-                title: "la dirección de: "+ nombre[z].value +" es: "+ data.results[0].formatted_address
+                title: title: "La segunda dirección de "+ nombre[c].value +" es: "+ data.results[0].formatted_address 
             });
              
             z=z+1;
